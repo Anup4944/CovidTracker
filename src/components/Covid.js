@@ -1,6 +1,6 @@
-import { Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import "./Covid.style.css";
+import { Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Covid = () => {
   const [data, setData] = useState([]);
@@ -24,18 +24,17 @@ const Covid = () => {
     <>
       <h1> 🔴 LIVE </h1>
       <h2>Covid 19 Venues across NSW </h2>
-      {data.map((currEle) => {
-        return (
-          <div className="container">
-            {" "}
-            Venue : {currEle.Venue} Address: {currEle.Address} Suburb :{" "}
-            {currEle.Suburb} Date : {currEle.Date} Time : {currEle.Time} Alert :{" "}
-            {currEle.Alert} Lon : {currEle.Lon} Lat : {currEle.Lat} HealthAdvice
-            : {currEle.HealthAdvice} transmissionvenues :{" "}
-            {currEle.transmissionvenues}
-          </div>
-        );
-      })}
+
+      <Card bg="success" border="info" style={{ width: "18rem" }}>
+        <Card.Header>Header</Card.Header>
+        <Card.Body>
+          <Card.Title>Primary Card Title</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </>
   );
 };
