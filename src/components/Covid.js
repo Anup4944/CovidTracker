@@ -1,40 +1,90 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, CardGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+// import { numberWithCommas } from "../utils/formatter";
 
 const Covid = () => {
   const [data, setData] = useState([]);
-  const getCovidData = async () => {
-    try {
-      const res = await fetch(
-        "https://data.nsw.gov.au/data/dataset/0a52e6c1-bc0b-48af-8b45-d791a6d8e289/resource/f3a28eed-8c2a-437b-8ac1-2dab3cf760f9/download/covid-case-locations-20210823-1200.json"
-      );
-      const actualData = await res.json();
-      // console.log(actualData.data.monitor[0]);
-      setData(actualData.data.monitor);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
-    getCovidData();
+    axios
+      .all([
+        axios.get("https://corona.lmao.ninja/v3/covid-19/all"),
+        axios.get("https://corona.lmao.ninja/v3/covid-19/countries"),
+      ])
+      .then((responseArr) => {
+        setData(responseArr[0].data);
+        setResult(responseArr[1].data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  const dates = new Date(parseInt(data.updated));
+  const latest = dates.toString();
+
+  const country = result.map((currEle) => {
+    return (
+      <Card bg="light" text="dark" className="text-center">
+        <Card.Body>
+          <Card.Title>{currEle.country}</Card.Title>
+          <Card.Text>Cases {currEle.cases}</Card.Text>
+        </Card.Body>
+      </Card>
+    );
+  });
+
   return (
     <>
       <h1> 🔴 LIVE </h1>
-      <h2>Covid 19 Venues across NSW </h2>
+      <h2>Covid 19 Cases Across the World</h2>
 
-      <Card bg="success" border="info" style={{ width: "18rem" }}>
-        <Card.Header>Header</Card.Header>
-        <Card.Body>
-          <Card.Title>Primary Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <CardGroup>
+        <Card
+          className="text-center"
+          bg="primary"
+          text="dark"
+          style={{ margin: "10px", fontSize: "1.5rem" }}
+        >
+          <Card.Body>
+            <Card.Title>Cases</Card.Title>
+            <Card.Text>{data.todayCases}</Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text">Last updated {latest}</small>
+          </Card.Footer>
+        </Card>
+        <Card
+          bg="danger"
+          text="dark"
+          style={{ margin: "10px", fontSize: "1.5rem" }}
+        >
+          <Card.Body>
+            <Card.Title>Deaths</Card.Title>
+            <Card.Text>{data.deaths}</Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text">Last updated {latest}</small>
+          </Card.Footer>
+        </Card>
+        <Card
+          bg="success"
+          text="dark"
+          style={{ margin: "10px", fontSize: "1.5rem" }}
+        >
+          <Card.Body>
+            <Card.Title>Recovered</Card.Title>
+            <Card.Text>{data.recovered}</Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text">Last updated {latest}</small>
+          </Card.Footer>
+        </Card>
+      </CardGroup>
+      {country}
     </>
   );
 };
