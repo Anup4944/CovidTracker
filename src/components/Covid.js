@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
-// import { Card, CardGroup } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+import { Card, CardGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import "./Covid.style.css";
 
 // import { numberWithCommas } from "../utils/formatter";
 
 const Covid = () => {
   const [data, setData] = useState([]);
-  const [result, setResult] = useState([]);
 
   useEffect(() => {
     axios
-      .all([
-        axios.get("https://corona.lmao.ninja/v3/covid-19/all"),
-        axios.get("https://corona.lmao.ninja/v3/covid-19/countries"),
-      ])
-      .then((responseArr) => {
-        setData(responseArr[0].data);
-        setResult(responseArr[1].data);
+      .get("https://corona.lmao.ninja/v3/covid-19/all")
+
+      .then((res) => {
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -28,23 +23,6 @@ const Covid = () => {
 
   const dates = new Date(parseInt(data.updated));
   const latest = dates.toString();
-
-  const country = result.map((currEle, i) => {
-    return (
-      <Card bg="light" text="dark" className="text-center" key={i}>
-        <Card.Img key={i} variant="top" src={currEle.countryInfo.flag} />
-        <Card.Body>
-          <Card.Title>{currEle.country}</Card.Title>
-          <Card.Text>Cases {currEle.cases}</Card.Text>
-          <Card.Text>Deaths {currEle.deaths}</Card.Text>
-          <Card.Text>Recovered {currEle.recovered}</Card.Text>
-          <Card.Text>Today's Case {currEle.cases}</Card.Text>
-          <Card.Text>Today's Deaths {currEle.todayDeaths}</Card.Text>
-          <Card.Text>Critical {currEle.critical}</Card.Text>
-        </Card.Body>
-      </Card>
-    );
-  });
 
   return (
     <>
@@ -60,7 +38,7 @@ const Covid = () => {
         >
           <Card.Body>
             <Card.Title>Cases</Card.Title>
-            <Card.Text>{data.todayCases}</Card.Text>
+            <Card.Text>{data.cases}</Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text">Last updated {latest}</small>
@@ -93,7 +71,6 @@ const Covid = () => {
           </Card.Footer>
         </Card>
       </CardGroup>
-      <Card>{country}</Card>
     </>
   );
 };
