@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardGroup } from "react-bootstrap";
+// import { Card, CardGroup } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+
 // import { numberWithCommas } from "../utils/formatter";
 
 const Covid = () => {
@@ -26,12 +29,18 @@ const Covid = () => {
   const dates = new Date(parseInt(data.updated));
   const latest = dates.toString();
 
-  const country = result.map((currEle) => {
+  const country = result.map((currEle, i) => {
     return (
-      <Card bg="light" text="dark" className="text-center">
+      <Card bg="light" text="dark" className="text-center" key={i}>
+        <Card.Img key={i} variant="top" src={currEle.countryInfo.flag} />
         <Card.Body>
           <Card.Title>{currEle.country}</Card.Title>
           <Card.Text>Cases {currEle.cases}</Card.Text>
+          <Card.Text>Deaths {currEle.deaths}</Card.Text>
+          <Card.Text>Recovered {currEle.recovered}</Card.Text>
+          <Card.Text>Today's Case {currEle.cases}</Card.Text>
+          <Card.Text>Today's Deaths {currEle.todayDeaths}</Card.Text>
+          <Card.Text>Critical {currEle.critical}</Card.Text>
         </Card.Body>
       </Card>
     );
@@ -84,7 +93,7 @@ const Covid = () => {
           </Card.Footer>
         </Card>
       </CardGroup>
-      {country}
+      <Card>{country}</Card>
     </>
   );
 };
