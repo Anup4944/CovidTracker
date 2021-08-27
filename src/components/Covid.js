@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./Covid.style.css";
 import "animate.css";
-
-// import { numberWithCommas } from "../utils/formatter";
+import NumberFormat from "react-number-format";
 
 const Covid = () => {
   const [data, setData] = useState([]);
@@ -38,11 +37,19 @@ const Covid = () => {
           className="text-center"
           bg="primary"
           text="dark"
-          style={{ margin: "10px", fontSize: "1.5rem" }}
+          style={{ margin: "10px", fontSize: "1.5rem", }}
         >
           <Card.Body>
             <Card.Title>Cases</Card.Title>
-            <Card.Text>{data.cases}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={data.cases}
+                displayType={"text"}
+                thousandSeparator={true}
+              >
+                {data.cases}
+              </NumberFormat>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>
@@ -57,7 +64,15 @@ const Covid = () => {
         >
           <Card.Body>
             <Card.Title>Deaths</Card.Title>
-            <Card.Text>{data.deaths}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={data.deaths}
+                displayType={"text"}
+                thousandSeparator={true}
+              >
+                {data.deaths}
+              </NumberFormat>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>
@@ -72,7 +87,15 @@ const Covid = () => {
         >
           <Card.Body>
             <Card.Title>Recovered</Card.Title>
-            <Card.Text>{data.recovered}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={data.recovered}
+                displayType={"text"}
+                thousandSeparator={true}
+              >
+                {data.recovered}
+              </NumberFormat>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>

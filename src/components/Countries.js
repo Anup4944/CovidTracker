@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Countries.style.css";
 import { Table, Form } from "react-bootstrap";
+import NumberFormat from "react-number-format";
 
 const Countries = () => {
   const [result, setResult] = useState([]);
@@ -44,6 +45,10 @@ const Countries = () => {
             <th>Cases</th>
             <th>Death</th>
             <th>Recovered</th>
+            <th>Case per One Million</th>
+            <th>Death per One Million</th>
+            <th>Population</th>
+            <th>Continent</th>
           </tr>
         </thead>
         <tbody>
@@ -54,10 +59,69 @@ const Countries = () => {
                   <td>
                     <img src={x.countryInfo.flag} alt="flags"></img>
                   </td>
-                  <td>{x.country}</td>
-                  <td>{x.cases}</td>
-                  <td>{x.deaths}</td>
-                  <td>{x.recovered}</td>
+                  <td> {x.country}</td>
+                  <td>
+                    {" "}
+                    <NumberFormat
+                      value={x.cases}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.cases}
+                    </NumberFormat>
+                  </td>
+                  <td>
+                    <NumberFormat
+                      value={x.deaths}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.deaths}
+                    </NumberFormat>
+                  </td>
+                  <td>
+                    <NumberFormat
+                      value={x.recovered}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.recovered}
+                    </NumberFormat>
+                  </td>
+                  <td>
+                    <NumberFormat
+                      value={x.casesPerOneMillion}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.casesPerOneMillion}
+                    </NumberFormat>
+                  </td>
+                  <td>
+                    <NumberFormat
+                      value={x.deathsPerOneMillion}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.deathsPerOneMillion}
+                    </NumberFormat>
+                  </td>
+                  <td>
+                    <NumberFormat
+                      value={x.population}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    >
+                      {" "}
+                      {x.population}
+                    </NumberFormat>
+                  </td>
+                  <td>{x.continent}</td>
                 </tr>
               </>
             );
