@@ -9,6 +9,11 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+
+  align-items: center;
+}
+tr {
+  max-width: fit-content;
 }
 
 tr:nth-child(even) {

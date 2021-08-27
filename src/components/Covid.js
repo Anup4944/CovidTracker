@@ -3,6 +3,7 @@ import { Card, CardGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./Covid.style.css";
+import "animate.css";
 
 // import { numberWithCommas } from "../utils/formatter";
 
@@ -26,7 +27,10 @@ const Covid = () => {
 
   return (
     <>
-      <h1> 🔴 LIVE </h1>
+      <h1 className="animate__animated animate__bounce animate__infinite	infinite">
+        {" "}
+        🔴 LIVE{" "}
+      </h1>
       <h2>Covid 19 Cases Across the World</h2>
 
       <CardGroup>
@@ -41,7 +45,9 @@ const Covid = () => {
             <Card.Text>{data.cases}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text">Last updated {latest}</small>
+            <small className="text" style={{ fontSize: "1rem" }}>
+              Last updated {latest}
+            </small>
           </Card.Footer>
         </Card>
         <Card
@@ -54,7 +60,9 @@ const Covid = () => {
             <Card.Text>{data.deaths}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text">Last updated {latest}</small>
+            <small className="text" style={{ fontSize: "1rem" }}>
+              Last updated {latest}
+            </small>
           </Card.Footer>
         </Card>
         <Card
@@ -67,7 +75,9 @@ const Covid = () => {
             <Card.Text>{data.recovered}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text">Last updated {latest}</small>
+            <small className="text" style={{ fontSize: "1rem" }}>
+              Last updated {latest}
+            </small>
           </Card.Footer>
         </Card>
       </CardGroup>
