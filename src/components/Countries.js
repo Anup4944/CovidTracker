@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, CardGroup } from "react-bootstrap";
+import "./Countries.style.css";
 
 const Countries = () => {
   const [result, setResult] = useState([]);
@@ -19,24 +19,30 @@ const Countries = () => {
 
   return (
     <>
-      {result.map((x, i) => {
-        return (
-          <CardGroup>
-            <Card bg="light" text="dark" key={i} style={{ width: "1rem" }}>
-              <Card.Img key={i} variant="top" src={x.countryInfo.flag} />
-              <Card.Body>
-                <Card.Title>{x.country}</Card.Title>
-                <Card.Text>Cases {x.cases}</Card.Text>
-                <Card.Text>Deaths {x.deaths}</Card.Text>
-                <Card.Text>Recovered {x.recovered}</Card.Text>
-                <Card.Text>Today's Case {x.cases}</Card.Text>
-                <Card.Text>Today's Deaths {x.todayDeaths}</Card.Text>
-                <Card.Text>Critical {x.critical}</Card.Text>
-              </Card.Body>
-            </Card>
-          </CardGroup>
-        );
-      })}
+      <table>
+        <tr>
+          <th>Country</th>
+          <th>Flag</th>
+          <th>Cases</th>
+          <th>Deaths</th>
+          <th>Recovered</th>
+          <th>Critical</th>
+        </tr>
+        {result.map((x, i) => {
+          return (
+            <tr>
+              <td>{x.country}</td>
+              <td>
+                <img src={x.countryInfo.flag} alt="flags"></img>
+              </td>
+              <td>{x.cases}</td>
+              <td> {x.deaths}</td>
+              <td>{x.recovered}</td>
+              <td>{x.critical}</td>
+            </tr>
+          );
+        })}
+      </table>
     </>
   );
 };
