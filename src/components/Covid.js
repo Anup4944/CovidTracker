@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardGroup } from "react-bootstrap";
+import { Card, CardGroup, Badge } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./Covid.style.css";
@@ -28,19 +28,24 @@ const Covid = () => {
     <>
       <h1 className="animate__animated animate__bounce animate__infinite	infinite">
         {" "}
-        🔴 LIVE{" "}
+        <Badge bg="dark"> 🔴 LIVE</Badge>{" "}
       </h1>
-      <h2>Covid 19 Cases Across the World</h2>
+      <h2>
+        {" "}
+        <Badge bg="info"> Covid 19 Cases Across the World</Badge>
+      </h2>
 
       <CardGroup>
         <Card
           className="text-center"
           bg="primary"
           text="dark"
-          style={{ margin: "10px", fontSize: "1.5rem", }}
+          style={{ fontSize: "1.5rem", cursor: "pointer" }}
         >
           <Card.Body>
-            <Card.Title>Cases</Card.Title>
+            <Card.Title>
+              <Badge bg="secondary">Cases</Badge>
+            </Card.Title>
             <Card.Text>
               <NumberFormat
                 value={data.cases}
@@ -53,17 +58,19 @@ const Covid = () => {
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>
-              Last updated {latest}
+              Last updated {new Date(latest).toDateString()}
             </small>
           </Card.Footer>
         </Card>
         <Card
           bg="danger"
           text="dark"
-          style={{ margin: "10px", fontSize: "1.5rem" }}
+          style={{ margin: "10px", fontSize: "1.5rem", cursor: "pointer" }}
         >
           <Card.Body>
-            <Card.Title>Deaths</Card.Title>
+            <Card.Title>
+              <Badge bg="warning">Deaths</Badge>
+            </Card.Title>
             <Card.Text>
               <NumberFormat
                 value={data.deaths}
@@ -76,17 +83,20 @@ const Covid = () => {
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>
-              Last updated {latest}
+              Last updated {new Date(latest).toDateString()}
             </small>
           </Card.Footer>
         </Card>
         <Card
           bg="success"
           text="dark"
-          style={{ margin: "10px", fontSize: "1.5rem" }}
+          style={{ cursor: "pointer", fontSize: "1.5rem" }}
         >
           <Card.Body>
-            <Card.Title>Recovered</Card.Title>
+            <Card.Title>
+              {" "}
+              <Badge bg="dark">Recovered</Badge>
+            </Card.Title>
             <Card.Text>
               <NumberFormat
                 value={data.recovered}
@@ -99,7 +109,7 @@ const Covid = () => {
           </Card.Body>
           <Card.Footer>
             <small className="text" style={{ fontSize: "1rem" }}>
-              Last updated {latest}
+              Last updated {new Date(latest).toDateString()}
             </small>
           </Card.Footer>
         </Card>

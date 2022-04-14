@@ -29,7 +29,7 @@ const Countries = () => {
   return (
     <>
       <Form>
-        <Form.Group className="mb-3" controlId="formGroupSearch">
+        <Form.Group className="mt-3" controlId="formGroupSearch">
           <Form.Control
             type="text"
             placeholder="Search Country here"
