@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Countries.style.css";
-import { Table, Form } from "react-bootstrap";
+import { Table, Form, Image } from "react-bootstrap";
 import NumberFormat from "react-number-format";
 
 const Countries = () => {
@@ -57,7 +57,7 @@ const Countries = () => {
               <>
                 <tr>
                   <td>
-                    <img src={x.countryInfo.flag} alt="flags"></img>
+                    <Image src={x.countryInfo.flag} alt="flags"></Image>
                   </td>
                   <td> {x.country}</td>
                   <td>
