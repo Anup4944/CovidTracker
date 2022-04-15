@@ -44,7 +44,10 @@ const Covid = () => {
         >
           <Card.Body>
             <Card.Title>
-              <Badge bg="secondary">Cases</Badge>
+              <h1>
+                {" "}
+                <Badge bg="secondary">Cases</Badge>
+              </h1>{" "}
             </Card.Title>
             <Card.Text>
               <NumberFormat
@@ -69,7 +72,10 @@ const Covid = () => {
         >
           <Card.Body>
             <Card.Title>
-              <Badge bg="warning">Deaths</Badge>
+              <h1>
+                {" "}
+                <Badge bg="warning">Deaths</Badge>
+              </h1>{" "}
             </Card.Title>
             <Card.Text>
               <NumberFormat
@@ -95,7 +101,10 @@ const Covid = () => {
           <Card.Body>
             <Card.Title>
               {" "}
-              <Badge bg="dark">Recovered</Badge>
+              <h1>
+                {" "}
+                <Badge bg="dark">Recovered</Badge>
+              </h1>{" "}
             </Card.Title>
             <Card.Text>
               <NumberFormat
