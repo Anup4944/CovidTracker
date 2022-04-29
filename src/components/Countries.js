@@ -22,7 +22,7 @@ const Countries = () => {
 
   const filterCountries = result.filter((item) => {
     return searchCountries !== ""
-      ? item.country.includes(searchCountries)
+      ? item.country.toLowerCase().includes(searchCountries)
       : item;
   });
 

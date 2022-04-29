@@ -7,3 +7,7 @@ h1 {
   height: 80vh;
   object-fit: cover;
 }
+
+.text {
+  font-weight: 500;
+}

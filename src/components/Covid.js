@@ -49,7 +49,7 @@ const Covid = () => {
                 <Badge bg="secondary">Cases</Badge>
               </h1>{" "}
             </Card.Title>
-            <Card.Text>
+            <Card.Text style={{ fontWeight: 700 }}>
               <NumberFormat
                 value={data.cases}
                 displayType={"text"}
@@ -77,7 +77,7 @@ const Covid = () => {
                 <Badge bg="warning">Deaths</Badge>
               </h1>{" "}
             </Card.Title>
-            <Card.Text>
+            <Card.Text style={{ fontWeight: 700 }}>
               <NumberFormat
                 value={data.deaths}
                 displayType={"text"}
@@ -88,7 +88,10 @@ const Covid = () => {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text" style={{ fontSize: "1rem" }}>
+            <small
+              className="text"
+              style={{ fontSize: "1rem", fontWeight: 500 }}
+            >
               Last updated {new Date(latest).toDateString()}
             </small>
           </Card.Footer>
@@ -106,7 +109,7 @@ const Covid = () => {
                 <Badge bg="dark">Recovered</Badge>
               </h1>{" "}
             </Card.Title>
-            <Card.Text>
+            <Card.Text style={{ fontWeight: 700 }}>
               <NumberFormat
                 value={data.recovered}
                 displayType={"text"}
